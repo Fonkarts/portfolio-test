@@ -1,0 +1,19 @@
+@use '../../styles/tokens' as *;
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-1;
+  padding: 0.125rem $space-2;
+  border: 1px solid $anthracite;
+  font-family: $font-mono;
+  font-size: 0.75rem;
+  white-space: nowrap;
+
+  &::before {
+    content: '';
+    width: $pixel;
+    height: $pixel;
+    background-color: currentColor;
+  }
+}

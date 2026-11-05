@@ -1,0 +1,32 @@
+@use '../../styles/tokens' as *;
+
+.section-heading {
+  display: grid;
+  gap: $space-2;
+
+  &__index {
+    @include pixel-label;
+    color: $anthracite-soft;
+
+    &::after {
+      content: ' /';
+    }
+  }
+
+  &__title {
+    font-family: $font-mono;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 600;
+    line-height: 1.15;
+  }
+
+  &__prompt {
+    margin-right: $space-3;
+    animation: blink 1.2s steps(1) infinite;
+  }
+
+  &__description {
+    max-width: 40rem;
+    color: $anthracite-soft;
+  }
+}

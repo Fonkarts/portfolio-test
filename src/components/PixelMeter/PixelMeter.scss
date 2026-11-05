@@ -1,0 +1,23 @@
+@use '../../styles/tokens' as *;
+
+.pixel-meter {
+  display: inline-flex;
+  gap: 3px;
+
+  &__cell {
+    width: 0.625rem;
+    height: 0.625rem;
+    border: 1px solid $anthracite;
+
+    &--filled {
+      background-color: $anthracite;
+      animation: cell-fill 240ms steps(2) var(--cell-delay, 0ms) both;
+    }
+  }
+}
+
+@keyframes cell-fill {
+  from {
+    background-color: transparent;
+  }
+}

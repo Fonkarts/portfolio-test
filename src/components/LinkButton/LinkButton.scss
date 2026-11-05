@@ -1,0 +1,41 @@
+@use '../../styles/tokens' as *;
+
+.link-button {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-2 $space-4;
+  border: $border;
+  font-family: $font-mono;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    transform $duration-fast $ease-in-out,
+    box-shadow $duration-fast $ease-in-out;
+
+  &:hover {
+    @include pixel-lift(3px);
+
+    .link-button__chevron {
+      translate: 3px 0;
+    }
+  }
+
+  &__chevron {
+    transition: translate $duration-fast $ease-in-out;
+  }
+
+  &--solid {
+    color: $cream;
+    background-color: $anthracite;
+
+    &:hover {
+      box-shadow: 3px 3px 0 $anthracite-soft;
+    }
+  }
+
+  &--ghost {
+    background-color: $cream-light;
+  }
+}
