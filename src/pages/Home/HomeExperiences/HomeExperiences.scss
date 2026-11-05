@@ -1,0 +1,90 @@
+@use '../../../styles/tokens' as *;
+
+$marker-size: 0.75rem;
+
+.home-experiences {
+  display: grid;
+  gap: $space-6;
+  max-width: 52rem;
+
+  &__item {
+    position: relative;
+    display: grid;
+    gap: $space-2;
+    padding-left: $space-6;
+    border-left: $border-width dashed $anthracite-faint;
+
+    // Repère pixel sur la ligne de temps
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0.4rem;
+      left: calc(-1 * (#{$marker-size} + #{$border-width}) / 2);
+      width: $marker-size;
+      height: $marker-size;
+      border: $border;
+      background-color: $cream-light;
+    }
+
+    &--current::before {
+      background-color: $anthracite;
+      animation: blink 1.4s steps(1) infinite;
+    }
+  }
+
+  &__period {
+    @include pixel-label;
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-3;
+  }
+
+  &__duration {
+    color: $anthracite-soft;
+
+    &::before {
+      content: '// ';
+    }
+  }
+
+  &__role {
+    font-family: $font-mono;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  &__company {
+    font-weight: 400;
+    color: $anthracite-soft;
+  }
+
+  &__location {
+    font-size: 0.875rem;
+    color: $anthracite-soft;
+  }
+
+  &__highlights {
+    display: grid;
+    gap: $space-1;
+    margin-top: $space-2;
+  }
+
+  &__highlight {
+    display: flex;
+    gap: $space-2;
+
+    &::before {
+      content: '>';
+      font-family: $font-mono;
+      font-weight: 600;
+    }
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-2;
+    margin-top: $space-2;
+  }
+}

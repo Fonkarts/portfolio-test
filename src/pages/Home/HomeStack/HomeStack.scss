@@ -1,0 +1,40 @@
+@use '../../../styles/tokens' as *;
+
+.home-stack {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: $space-6;
+
+  @include below($bp-md) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  &__label {
+    @include pixel-label;
+    padding-bottom: $space-2;
+    margin-bottom: $space-3;
+    border-bottom: $border;
+    font-weight: 400;
+
+    &::before {
+      content: '# ';
+    }
+  }
+
+  &__list {
+    display: grid;
+    gap: $space-2;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-3;
+  }
+
+  &__name {
+    font-family: $font-mono;
+    font-size: 0.9375rem;
+  }
+}
