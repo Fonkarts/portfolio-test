@@ -1,98 +1,100 @@
 @use '../../styles/tokens' as *;
 
 .home {
-  max-width: $container;
-  padding: $space-5 $space-5 $space-6;
-  margin-inline: auto;
-
-  @include below($bp-sm) {
-    padding-inline: $space-4;
-  }
-
-  &__explore {
-    display: grid;
-    gap: $space-6;
-    padding-block: $space-7 $space-8;
-  }
-
-  &__cards {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    column-gap: $gap;
-
-    @include below($bp-md) {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+    max-width: $container;
+    padding: $space-5 $space-5 $space-6;
+    margin-inline: auto;
 
     @include below($bp-sm) {
-      grid-template-columns: minmax(0, 1fr);
-    }
-  }
-
-  // L'espacement vertical passe par des marges (et non row-gap) pour que
-  // le panneau fermé n'ajoute aucun espace dans la grille.
-  &__card {
-    z-index: 1;
-    margin-bottom: $gap;
-
-    @for $i from 1 through 8 {
-      &:nth-child(#{$i}) {
-        order: $i * 2;
-      }
-    }
-  }
-
-  // Position du panneau et point de départ de l'animation, selon le layout de grille
-  &__panel {
-    --cols: 4;
-    --col: var(--col-4);
-    --track: calc((100% - (var(--cols) - 1) * #{$gap}) / var(--cols));
-    --reveal-left: calc(var(--col) * (var(--track) + #{$gap}));
-    --reveal-right: calc((var(--cols) - 1 - var(--col)) * (var(--track) + #{$gap}));
-    --reveal-gap: #{$gap};
-
-    z-index: 0;
-    grid-column: 1 / -1;
-    order: var(--order-4);
-
-    @include below($bp-md) {
-      --cols: 2;
-      --col: var(--col-2);
-
-      order: var(--order-2);
+        padding-inline: $space-4;
     }
 
-    @include below($bp-sm) {
-      --cols: 1;
-      --col: var(--col-1);
-
-      order: var(--order-1);
+    &__explore {
+        display: grid;
+        gap: $space-6;
+        padding-block: $space-7 $space-8;
     }
-  }
 
-  &__footer {
-    @include pixel-label;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: $space-3;
-    padding-top: $space-4;
-    border-top: $border;
-  }
+    &__cards {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        column-gap: $gap;
 
-  &__back-to-top {
-    display: inline-flex;
-    align-items: center;
-    gap: $space-2;
-    text-decoration: none;
+        @include below($bp-md) {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
 
-    &:hover {
-      text-decoration: underline;
+        @include below($bp-sm) {
+            grid-template-columns: minmax(0, 1fr);
+        }
     }
-  }
 
-  &__back-to-top-icon {
-    width: 0.4rem;
-    rotate: -90deg;
-  }
+    // L'espacement vertical passe par des marges (et non row-gap) pour que
+    // le panneau fermé n'ajoute aucun espace dans la grille.
+    &__card {
+        z-index: 1;
+        margin-bottom: $gap;
+
+        @for $i from 1 through 8 {
+            &:nth-child(#{$i}) {
+                order: $i * 2;
+            }
+        }
+    }
+
+    // Position du panneau et point de départ de l'animation, selon le layout de grille
+    &__panel {
+        --cols: 4;
+        --col: var(--col-4);
+        --track: calc((100% - (var(--cols) - 1) * #{$gap}) / var(--cols));
+        --reveal-left: calc(var(--col) * (var(--track) + #{$gap}));
+        --reveal-right: calc(
+            (var(--cols) - 1 - var(--col)) * (var(--track) + #{$gap})
+        );
+        --reveal-gap: #{$gap};
+
+        z-index: 0;
+        grid-column: 1 / -1;
+        order: var(--order-4);
+
+        @include below($bp-md) {
+            --cols: 2;
+            --col: var(--col-2);
+
+            order: var(--order-2);
+        }
+
+        @include below($bp-sm) {
+            --cols: 1;
+            --col: var(--col-1);
+
+            order: var(--order-1);
+        }
+    }
+
+    &__footer {
+        @include pixel-label;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: $space-3;
+        padding-top: $space-4;
+        border-top: $border;
+    }
+
+    &__back-to-top {
+        display: inline-flex;
+        align-items: center;
+        gap: $space-2;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__back-to-top-icon {
+        width: 0.4rem;
+        rotate: -90deg;
+    }
 }

@@ -1,52 +1,52 @@
 @use '../../../styles/tokens' as *;
 
 .home-apps {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: $gap;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $gap;
 
-  @include below($bp-sm) {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  &__repo {
-    display: flex;
-    flex-direction: column;
-    gap: $space-3;
-    height: 100%;
-    padding: $space-5;
-    border: 1px dashed $anthracite;
-  }
-
-  &__name {
-    font-family: $font-mono;
-    font-size: 1.0625rem;
-    font-weight: 600;
-
-    &::before {
-      content: '~/';
-      color: $anthracite-soft;
+    @include below($bp-sm) {
+        grid-template-columns: minmax(0, 1fr);
     }
-  }
 
-  &__description {
-    font-size: 0.9375rem;
-    color: $anthracite-soft;
-  }
+    &__repo {
+        display: flex;
+        flex-direction: column;
+        gap: $space-3;
+        height: 100%;
+        padding: $space-5;
+        border: 1px dashed $anthracite;
+    }
 
-  &__meta {
-    display: flex;
-    align-items: center;
-    gap: $space-3;
-    margin-top: auto;
-  }
+    &__name {
+        font-family: $font-mono;
+        font-size: 1.0625rem;
+        font-weight: 600;
 
-  &__stars {
-    font-family: $font-mono;
-    font-size: 0.8125rem;
-  }
+        &::before {
+            content: '~/';
+            color: $anthracite-soft;
+        }
+    }
 
-  &__link {
-    align-self: flex-start;
-  }
+    &__description {
+        font-size: 0.9375rem;
+        color: $anthracite-soft;
+    }
+
+    &__meta {
+        display: flex;
+        align-items: center;
+        gap: $space-3;
+        margin-top: auto;
+    }
+
+    &__stars {
+        font-family: $font-mono;
+        font-size: 0.8125rem;
+    }
+
+    &__link {
+        align-self: flex-start;
+    }
 }

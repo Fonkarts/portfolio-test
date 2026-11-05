@@ -48,37 +48,49 @@ $bp-sm: 600px;
 // ---------------------------------------------------------------------------
 
 @mixin below($breakpoint) {
-  @media (max-width: $breakpoint) {
-    @content;
-  }
+    @media (max-width: $breakpoint) {
+        @content;
+    }
 }
 
 // Petite étiquette typographique façon écran 8 bits
 @mixin pixel-label {
-  font-family: $font-pixel;
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
-  text-transform: lowercase;
+    font-family: $font-pixel;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: lowercase;
 }
 
 // Coins découpés en escalier de pixels
 @mixin pixel-clip($step: $pixel) {
-  $double: $step * 2;
+    $double: $step * 2;
 
-  clip-path: polygon(
-    0 $double, $step $double, $step $step, $double $step, $double 0,
-    calc(100% - #{$double}) 0, calc(100% - #{$double}) $step, calc(100% - #{$step}) $step,
-    calc(100% - #{$step}) $double, 100% $double,
-    100% calc(100% - #{$double}), calc(100% - #{$step}) calc(100% - #{$double}),
-    calc(100% - #{$step}) calc(100% - #{$step}), calc(100% - #{$double}) calc(100% - #{$step}),
-    calc(100% - #{$double}) 100%,
-    $double 100%, $double calc(100% - #{$step}), $step calc(100% - #{$step}),
-    $step calc(100% - #{$double}), 0 calc(100% - #{$double})
-  );
+    clip-path: polygon(
+        0 $double,
+        $step $double,
+        $step $step,
+        $double $step,
+        $double 0,
+        calc(100% - #{$double}) 0,
+        calc(100% - #{$double}) $step,
+        calc(100% - #{$step}) $step,
+        calc(100% - #{$step}) $double,
+        100% $double,
+        100% calc(100% - #{$double}),
+        calc(100% - #{$step}) calc(100% - #{$double}),
+        calc(100% - #{$step}) calc(100% - #{$step}),
+        calc(100% - #{$double}) calc(100% - #{$step}),
+        calc(100% - #{$double}) 100%,
+        $double 100%,
+        $double calc(100% - #{$step}),
+        $step calc(100% - #{$step}),
+        $step calc(100% - #{$double}),
+        0 calc(100% - #{$double})
+    );
 }
 
 // Décalage « ombre portée pixel » au survol
 @mixin pixel-lift($offset: $pixel, $shadow: $anthracite) {
-  transform: translate(-$offset, -$offset);
-  box-shadow: $offset $offset 0 $shadow;
+    transform: translate(-$offset, -$offset);
+    box-shadow: $offset $offset 0 $shadow;
 }

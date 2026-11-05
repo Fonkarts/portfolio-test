@@ -1,71 +1,71 @@
 @use '../../styles/tokens' as *;
 
 .avatar {
-  position: relative;
-
-  // Trame décalée derrière la photo
-  &::before {
-    content: '';
-    position: absolute;
-    inset: $space-4 (-$space-4) $space-6 $space-4;
-    background-image: radial-gradient($anthracite 1.5px, transparent 1.5px);
-    background-size: 10px 10px;
-    opacity: 0.35;
-  }
-
-  &__frame {
-    @include pixel-clip(6px);
     position: relative;
-    aspect-ratio: 4 / 5;
-    padding: $border-width * 2;
-    background-color: $anthracite;
-    animation: avatar-in 700ms steps(6) 200ms both;
-  }
 
-  &__image,
-  &__placeholder {
-    @include pixel-clip;
-    width: 100%;
-    height: 100%;
-  }
-
-  &__image {
-    object-fit: cover;
-  }
-
-  &__placeholder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: $space-4;
-    color: $anthracite-soft;
-    background-color: $cream-light;
-  }
-
-  &__placeholder-icon {
-    width: 30%;
-  }
-
-  &__placeholder-label {
-    @include pixel-label;
-  }
-
-  &__caption {
-    @include pixel-label;
-    position: relative;
-    margin-top: $space-3;
-    text-align: right;
-
+    // Trame décalée derrière la photo
     &::before {
-      content: '@ ';
+        content: '';
+        position: absolute;
+        inset: $space-4 (-$space-4) $space-6 $space-4;
+        background-image: radial-gradient($anthracite 1.5px, transparent 1.5px);
+        background-size: 10px 10px;
+        opacity: 0.35;
     }
-  }
+
+    &__frame {
+        @include pixel-clip(6px);
+        position: relative;
+        aspect-ratio: 4 / 5;
+        padding: $border-width * 2;
+        background-color: $anthracite;
+        animation: avatar-in 700ms steps(6) 200ms both;
+    }
+
+    &__image,
+    &__placeholder {
+        @include pixel-clip;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__image {
+        object-fit: cover;
+    }
+
+    &__placeholder {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: $space-4;
+        color: $anthracite-soft;
+        background-color: $cream-light;
+    }
+
+    &__placeholder-icon {
+        width: 30%;
+    }
+
+    &__placeholder-label {
+        @include pixel-label;
+    }
+
+    &__caption {
+        @include pixel-label;
+        position: relative;
+        margin-top: $space-3;
+        text-align: right;
+
+        &::before {
+            content: '@ ';
+        }
+    }
 }
 
 @keyframes avatar-in {
-  from {
-    opacity: 0;
-    scale: 0.9;
-  }
+    from {
+        opacity: 0;
+        scale: 0.9;
+    }
 }
