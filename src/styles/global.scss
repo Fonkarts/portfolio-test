@@ -1,0 +1,97 @@
+@use 'tokens' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: $font-sans;
+  line-height: 1.6;
+  color: $anthracite;
+  background-color: $cream;
+  // Trame de points discrète, comme une grille de pixels
+  background-image: radial-gradient($anthracite-faint 1px, transparent 1px);
+  background-size: 24px 24px;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ol,
+ul,
+dl,
+dd,
+figure {
+  margin: 0;
+}
+
+ol,
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  color: $cream;
+  background-color: $anthracite;
+}
+
+:focus-visible {
+  outline: $border-width dashed $anthracite;
+  outline-offset: 3px;
+}
+
+// Animations partagées
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    translate: 0 $space-4;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
+}

@@ -1,0 +1,84 @@
+// ---------------------------------------------------------------------------
+// Design tokens — importés dans chaque fichier SCSS via `@use '…/tokens' as *;`
+// ---------------------------------------------------------------------------
+
+// Couleurs
+$cream: #f5f0e6;
+$cream-light: #fbf8f2;
+$cream-muted: rgba(245, 240, 230, 0.68);
+$anthracite: #2d2f33;
+$anthracite-soft: #5f6268;
+$anthracite-faint: rgba(45, 47, 51, 0.16);
+
+// Typographie
+$font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+$font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+$font-pixel: 'Silkscreen', $font-mono;
+
+// Espacements
+$space-1: 0.25rem;
+$space-2: 0.5rem;
+$space-3: 0.75rem;
+$space-4: 1rem;
+$space-5: 1.5rem;
+$space-6: 2rem;
+$space-7: 3rem;
+$space-8: 4rem;
+$space-9: 6rem;
+
+// Lignes & pixels
+$border-width: 2px;
+$border: $border-width solid $anthracite;
+$pixel: 4px;
+
+// Mouvement
+$ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+$duration-fast: 160ms;
+$duration-reveal-x: 420ms;
+$duration-reveal-y: 520ms;
+
+// Mise en page
+$container: 72rem;
+$gap: 1.25rem;
+$bp-md: 960px;
+$bp-sm: 600px;
+
+// ---------------------------------------------------------------------------
+// Mixins
+// ---------------------------------------------------------------------------
+
+@mixin below($breakpoint) {
+  @media (max-width: $breakpoint) {
+    @content;
+  }
+}
+
+// Petite étiquette typographique façon écran 8 bits
+@mixin pixel-label {
+  font-family: $font-pixel;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+}
+
+// Coins découpés en escalier de pixels
+@mixin pixel-clip($step: $pixel) {
+  $double: $step * 2;
+
+  clip-path: polygon(
+    0 $double, $step $double, $step $step, $double $step, $double 0,
+    calc(100% - #{$double}) 0, calc(100% - #{$double}) $step, calc(100% - #{$step}) $step,
+    calc(100% - #{$step}) $double, 100% $double,
+    100% calc(100% - #{$double}), calc(100% - #{$step}) calc(100% - #{$double}),
+    calc(100% - #{$step}) calc(100% - #{$step}), calc(100% - #{$double}) calc(100% - #{$step}),
+    calc(100% - #{$double}) 100%,
+    $double 100%, $double calc(100% - #{$step}), $step calc(100% - #{$step}),
+    $step calc(100% - #{$double}), 0 calc(100% - #{$double})
+  );
+}
+
+// Décalage « ombre portée pixel » au survol
+@mixin pixel-lift($offset: $pixel, $shadow: $anthracite) {
+  transform: translate(-$offset, -$offset);
+  box-shadow: $offset $offset 0 $shadow;
+}
