@@ -1,0 +1,113 @@
+@use '../../styles/tokens' as *;
+
+$bar-height: 2.75rem;
+$closed-offset: calc(-1 * (#{$bar-height} + #{$border-width * 2}));
+
+.reveal-panel {
+  position: relative;
+  display: grid;
+  grid-template-rows: $bar-height 0fr;
+  // Fermé, le panneau ne prend aucune place : il est « rangé » sous les cartes
+  margin-top: $closed-offset;
+  margin-bottom: 0;
+  border: $border;
+  background-color: $cream-light;
+  clip-path: inset(0 var(--reveal-right, 0px) 0 var(--reveal-left, 0px));
+  visibility: hidden;
+  // Fermeture : vertical d'abord, puis horizontal
+  transition:
+    grid-template-rows $duration-reveal-y $ease-in-out,
+    margin-bottom $duration-reveal-y $ease-in-out,
+    clip-path $duration-reveal-x $ease-in-out $duration-reveal-y,
+    margin-top $duration-reveal-x $ease-in-out $duration-reveal-y,
+    visibility 0s linear ($duration-reveal-x + $duration-reveal-y);
+
+  &--open {
+    grid-template-rows: $bar-height 1fr;
+    margin-top: 0;
+    margin-bottom: var(--reveal-gap, 0px);
+    clip-path: inset(0);
+    visibility: visible;
+    // Ouverture : horizontal d'abord, puis vertical
+    transition:
+      clip-path $duration-reveal-x $ease-in-out,
+      margin-top $duration-reveal-x $ease-in-out,
+      grid-template-rows $duration-reveal-y $ease-in-out $duration-reveal-x,
+      margin-bottom $duration-reveal-y $ease-in-out $duration-reveal-x,
+      visibility 0s;
+  }
+
+  &__bar {
+    display: flex;
+    align-items: center;
+    gap: $space-4;
+    padding-inline: $space-4;
+    color: $cream;
+    background-color: $anthracite;
+  }
+
+  &__dots {
+    display: flex;
+    gap: $space-1;
+  }
+
+  &__dot {
+    width: $pixel * 2;
+    height: $pixel * 2;
+    border: 1px solid $cream;
+
+    &:first-child {
+      background-color: $cream;
+    }
+  }
+
+  &__title {
+    flex: 1;
+    overflow: hidden;
+    font-family: $font-mono;
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    &::before {
+      content: '> ';
+    }
+
+    &::after {
+      content: '_';
+      animation: blink 1s steps(1) infinite;
+    }
+  }
+
+  &__close {
+    padding: $space-1 $space-2;
+    border: 0;
+    font-family: $font-mono;
+    background-color: transparent;
+    cursor: pointer;
+
+    &:hover {
+      color: $anthracite;
+      background-color: $cream;
+    }
+
+    &:focus-visible {
+      outline-color: $cream;
+    }
+  }
+
+  &__body {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  &__content {
+    padding: $space-6;
+    animation: rise-in 400ms $ease-in-out both;
+
+    @include below($bp-sm) {
+      padding: $space-5 $space-4;
+    }
+  }
+}
